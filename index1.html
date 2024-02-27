@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Steganography</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+      integrity="sha256-9mbkOfVho3ZPXfM7W8sV2SndrGDuh7wuyLjtsWeTI1Q="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="s1.css" />
+    <script src="st.js"></script>
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+      .conta {
+    display: flex;
+    height: 90vh;
+    width: 100vw;
+    justify-content: center;
+    
+    flex-direction: column;
+    
+}
+.bg{
+  
+  overflow-x: hidden;
+            min-height: 100vh;
+            width: 100%;
+            background: url('w.jpeg')no-repeat;
+            background-position: center;
+            background-size: cover;
+           background-color: aqua;
+        }
+
+
+        
+
+h2{
+  color: rgb(17, 22, 28);
+}
+div.chs{
+  position:absolute;
+  left: 350px;
+  color: rgb(16, 13, 13);
+}
+h3{
+  color: rgb(12, 14, 16);
+}
+.b2:hover {
+          transform: scale(1.1);
+            box-shadow: 0 0 24px 0;
+        }
+        
+        .b2{
+          position: relative;
+            display: inline-block;
+            padding: 10px 20px;
+            font-weight: bold;
+            color:aqua;
+            font-size: 16px;
+            text-decoration: none;
+            text-transform: uppercase;
+            overflow: hidden;
+            transition: .5s;
+            margin-top: 40px;
+            letter-spacing: 3px;
+            border-radius: 20%;
+            background-color: black;
+        }
+        
+
+    </style>
+  </head>
+  <body>
+    <div class="bg">
+      <div class="login-box">
+    <div class="conta">
+      
+
+        
+  
+      <div class="">
+        <div class="chs">
+        <input class="ui secondary button" type="file" name="pic" accept="image/*" onchange="decode(this);" />
+        <img class = "opa" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+        <h3>Decoded Text:</h3>
+        <h2 id="decoded"></h2><BR><br>
+        <input  class="b2" type=button onClick="location.href='index10.html'" value="FINAL">
+  </div>
+      </div>
+    </div>
+      
+    </div>
+    </div>
+    <script src="ind.js"></script>
+    
+    </body>
+</html>

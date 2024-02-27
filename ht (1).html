@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Browser</title>
+    <style>
+        #image-preview {
+            max-width: 500px;
+            max-height: 500px;
+            margin-bottom: 20px;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .bg {
+            min-height: 100vh;
+            width: 100%;
+            background: url('w1.jpg')no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+       h1,h2{
+            color: #f8f4f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg">
+    <h1>Image Browser</h1>
+
+    <input type="file" id="image-input" accept="image/*">
+    <div id="image-container">
+        <img id="image-preview" src="#" alt="Image Preview">
+    </div>
+
+    <h2>Display Specific Pixel</h2>
+    <label for="pixel-row">Row:</label>
+    <input type="number" id="pixel-row" min="0">
+    <br>
+    <label for="pixel-column">Column:</label>
+    <input type="number" id="pixel-column" min="0">
+    <br>
+    <button onclick="displayPixel()">Display Pixel</button>
+    <div id="pixel-info"></div>
+
+    <h2>Image Dimensions</h2>
+    <div id="image-dimensions"></div>
+    </div>
+
+    <script>
+        // Function to preview the selected image
+        function previewImage() {
+            var fileInput = document.getElementById('image-input');
+            var imagePreview = document.getElementById('image-preview');
+
+            // Check if a file is selected
+            if (fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader();
+
+                // Read the selected image file as a data URL
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+
+                    // Calculate image dimensions after the image is loaded
+                    imagePreview.onload = function () {
+                        calculateImageDimensions();
+                    };
+                };
+
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+
+        // Attach event listener to the file input
+        var fileInput = document.getElementById('image-input');
+        fileInput.addEventListener('change', previewImage);
+
+        // Function to display the pixel information
+        function displayPixel() {
+            var pixelRow = parseInt(document.getElementById('pixel-row').value);
+            var pixelColumn = parseInt(document.getElementById('pixel-column').value);
+            var image = document.getElementById('image-preview');
+
+            var canvas = document.createElement('canvas');
+            var context = canvas.getContext('2d');
+            context.drawImage(image, 0, 0);
+            var pixelData = context.getImageData(pixelColumn, pixelRow, 1, 1).data;
+
+            var pixelInfo = document.getElementById('pixel-info');
+            pixelInfo.textContent = 'Pixel at Row ' + pixelRow + ', Column ' + pixelColumn + ': ' +
+                'Red: ' + pixelData[0] + ', ' +
+                'Green: ' + pixelData[1] + ', ' +
+                'Blue: ' + pixelData[2];
+        }
+
+        // Function to calculate the image dimensions
+        function calculateImageDimensions() {
+            var image = document.getElementById('image-preview');
+            var imageDimensions = document.getElementById('image-dimensions');
+
+            var width = image.naturalWidth;
+            var height = image.naturalHeight;
+
+            imageDimensions.textContent = 'Image Dimensions: ' +
+                'Width: ' + width + ', ' +
+                'Height: ' + height;
+        }
+
+    
+    </script>
+</body>
+</html>
